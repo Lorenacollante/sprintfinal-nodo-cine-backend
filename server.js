@@ -68,7 +68,7 @@ app.use((err, req, res, next) => {
 });
 
 // Server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor funcionando en http://localhost:${PORT}`);
   console.log(`CORS habilitado para: ${allowedOrigins.join(", ")}`);
