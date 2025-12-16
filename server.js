@@ -21,18 +21,23 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
   "http://localhost:5174",
   "http://127.0.0.1:5174",
-  "https://nodo-cine-lore.netlify.app/",
-  process.env.FRONTEND_URL,
+  "https://nodo-cine-lore.netlify.app",
+  
 ];
-
+ if (process.env.FRONTEND_URL){
+allowedOrigins.push(process.env.FRONTEND_URL);
+}
 app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);      
+
+
       if (/^https?:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin))
+
         return callback(null, true);
-      callback(new Error("CORS no permitido: " + origin));
+       callback(new Error("CORS no permitido: " + origin));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
